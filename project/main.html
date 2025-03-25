@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerHer - Women's Safety</title>
+    <link rel="stylesheet" href="styleformain.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>EmpowerHer</h1>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="profile-container">
+            <div class="profile">
+                <div class="profile-pic">👤</div>
+                <div class="profile-info">
+                    <h2 id="userName">User Name</h2>
+                    <p id="userPhone">+91 XXXXX XXXXX</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Options Grid -->
+    <section class="options-grid">
+        <div class="option big-option" onclick="redirectToTrackMe()">📍<span>TrackMe</span></div>
+        <div class="option big-option" onclick="window.location.href='addcontact.html'">☎<span>Add Contact</span></div>
+        <div class="option big-option" onclick="loadContent('feedback')">👍<span>Feedback</span></div>
+        <div class="option big-option" onclick="window.location.href='laws.html'">📄<span>Legal</span></div>
+        <div class="option big-option" onclick="loadContent('help')">🆘<span>Help</span></div>
+        <div class="option big-option" onclick="window.location.href='helpline.html'">📞<span>Helpline</span></div>
+        <div class="option big-option" onclick="loadContent('share')">🔗<span>Share App</span></div>
+        <div class="option big-option" onclick="window.location.href='about.html'">📖<span>About</span></div>
+        <div class="option big-option" onclick="window.location.href='friends.html'">🤝<span>Friends</span></div>
+        <div class="option big-option" onclick="window.location.href='index.html'">↩<span>Log Out</span></div>
+    </section>
+
+    <!-- Content Section (Dynamically Loaded) -->
+    <section id="contentSection" class="content" style="display: none;">
+        <button class="back-btn" onclick="goBack()">⬅ Back</button>
+        <h2 id="contentTitle"></h2>
+        <p id="contentText"></p>
+    </section>
+
+    <script>
+        function goBack() {
+            document.getElementById("contentSection").style.display = "none";
+            document.querySelector(".options-grid").style.display = "grid";
+        }
+
+        function loadContent(page) {
+            const contentData = {
+                "feedback": { title: "Feedback Matters", text: "Your feedback helps improve security features." },
+                "legal": { title: "Know Your Rights", text: "Understanding legal rights can empower you in difficult situations." },
+                "help": { title: "Get Help When Needed", text: "Use SOS alerts or contact emergency numbers in an emergency." },
+                "language": { title: "Safety for Everyone", text: "EmpowerHer is available in multiple languages." },
+                "helpline": { title: "Helpline Numbers", text: "Quick access to emergency helpline numbers." },
+                "share": { title: "Spread Awareness", text: "Help others by sharing safety tips and encouraging them to use safety features." },
+                "info": { title: "Stay Informed", text: "Get important updates, self-defense tips, and safety news." },
+                "about": { title: "About EmpowerHer", text: "EmpowerHer is a safety application designed to provide real-time security and emergency assistance to women in need." },
+                "contact": { title: "Contact Us", text: "For support, email us at support@empowerher.com or call our helpline." },
+                "logout": { title: "Stay Safe", text: "Logging out? Always be aware of your surroundings." }
+            };
+
+            document.getElementById("contentTitle").innerText = contentData[page].title;
+            document.getElementById("contentText").innerText = contentData[page].text;
+
+            document.getElementById("contentSection").style.display = "block";
+            document.querySelector(".options-grid").style.display = "none";
+        }
+
+        function redirectToTrackMe() {
+            window.location.href = "location.html"; // Redirects to location.html when "TrackMe" is clicked
+        }
+
+        // Load user data from localStorage
+        window.onload = function () {
+            const userName = localStorage.getItem('userName') || "User Name";
+            const userPhone = localStorage.getItem('userPhone') || "+91 XXXXX XXXXX";
+
+            document.getElementById('userName').innerText = userName;
+            document.getElementById('userPhone').innerText = userPhone;
+        };
+    </script>
+
+</body>
+</html>

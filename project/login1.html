@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Empower Her</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Empower Her - Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="textbox">
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" id="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="textbox">
+                    <input type="text" id="otp" placeholder="Enter OTP" required disabled>
+                    <button type="button" id="sendOtpBtn">Send OTP</button>
+                </div>
+
+                <!-- Hidden Login Button (Appears after OTP Verification) -->
+                <input type="submit" id="loginBtn" value="Register" style="display: none;">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let generatedOTP = "";
+
+        // Function to generate a random 4-digit OTP
+        function generateOTP() {
+            return Math.floor(1000 + Math.random() * 9000).toString();
+        }
+
+        // Function to handle OTP sending
+        document.getElementById("sendOtpBtn").addEventListener("click", function () {
+            const phoneInput = document.getElementById('phone').value;
+
+            if (!phoneInput || phoneInput.length !== 10 || isNaN(phoneInput)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return;
+            }
+
+            generatedOTP = generateOTP(); // Generate OTP
+            alert(`Your OTP is: ${generatedOTP}`); // Simulated OTP (for testing)
+
+            // Enable OTP input for verification
+            document.getElementById('otp').removeAttribute('disabled');
+        });
+
+        // OTP Verification Logic
+        document.getElementById('otp').addEventListener("input", function () {
+            const enteredOTP = document.getElementById('otp').value;
+            const loginBtn = document.getElementById('loginBtn');
+
+            if (enteredOTP === generatedOTP) {
+                alert("OTP Verified Successfully!");
+                loginBtn.style.display = "block";  // Show Login Button
+            } else {
+                loginBtn.style.display = "none";   // Hide Login Button
+            }
+        });
+
+        // Handle Login and Redirect to main.html
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const phone = document.getElementById('phone').value;
+
+            // Store data in localStorage
+            localStorage.setItem('userName', username);
+            localStorage.setItem('userPhone', phone);
+
+            // Redirect to details.html
+            window.location.href = "main.html";
+        }
+    </script>
+</body>
+</html>

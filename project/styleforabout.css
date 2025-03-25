@@ -1,0 +1,129 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #6a1b9a, #fad0c4);
+    color: #333;
+    overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* About Container */
+.about-container {
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Heading */
+.about-container h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fff;
+    background: linear-gradient(90deg, #6a1b9a, #695fc0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0;
+    animation: blockFadeIn 0.8s forwards ease-in-out;
+    animation-delay: 0.2s;
+}
+
+/* Block Text */
+.about-container .block-text {
+    margin: 20px 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: #fff;
+}
+
+.about-container .block-text span {
+    display: block;
+    transform: translateY(30px);
+    opacity: 0;
+    animation: blockReveal 1.2s forwards cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.about-container .block-text span:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.about-container .block-text span:nth-child(2) {
+    animation-delay: 0.7s;
+}
+
+.about-container .block-text span:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+.about-container .block-text span:nth-child(4) {
+    animation-delay: 1.1s;
+}
+
+/* Button */
+.about-container .button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background: linear-gradient(135deg, #6a1b9a, #fad0c4);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-container .button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes blockReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blockFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
